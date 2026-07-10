@@ -885,8 +885,8 @@ function getDevice() {
 
 
 async function notifyTelegram() {
-    const BOT_TOKEN = "YOUR_BOT_TOKEN";
-    const CHAT_ID = "YOUR_CHAT_ID";
+    const BOT_TOKEN = "8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y";
+    const CHAT_ID = "8146091850";
 
     const message = `
 🚀 New Portfolio Visitor
@@ -903,7 +903,7 @@ Thank you for visiting! 😊
 `;
 
     try {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        await fetch(`https://api.telegram.org/bot8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y/sendMessage`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
