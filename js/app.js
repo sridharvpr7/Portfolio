@@ -885,8 +885,8 @@ function getDevice() {
 
 
 async function notifyTelegram() {
-    const BOT_TOKEN = "YOUR_BOT_TOKEN";
-    const CHAT_ID = "YOUR_CHAT_ID";
+    const BOT_TOKEN = "8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y";
+    const CHAT_ID = "8146091850";
 
     const message = `
 🚀 New Portfolio Visitor
@@ -903,7 +903,7 @@ Thank you for visiting! 😊
 `;
 
     try {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        await fetch(`https://api.telegram.org/bot8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y/sendMessage`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -919,88 +919,7 @@ Thank you for visiting! 😊
 }
 
 
-function initVisitorTracking() {
 
-    // Resume download
-    document.querySelectorAll('a[href*="resume"]').forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            resumeDownloaded = true;
-        });
-    });
-
-    // GitHub
-    document.querySelectorAll('a[href*="github.com"]').forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            githubClicked = true;
-        });
-    });
-
-    // LinkedIn
-    document.querySelectorAll('a[href*="linkedin.com"]').forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            linkedinClicked = true;
-        });
-    });
-
-    // WhatsApp
-    document.querySelectorAll('a[href*="wa.me"],a[href*="whatsapp"]').forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            whatsappClicked = true;
-        });
-    });
-
-    // Certificates
-    document.addEventListener("click",(e)=>{
-        if(e.target.closest(".certificate-thumb")){
-            certificatesOpened++;
-        }
-    });
-
-    // Projects
-   let projectObserver;
-
-function initProjectTracking() {
-
-    if (projectObserver) {
-        projectObserver.disconnect();
-    }
-
-    const seenProjects = new Set();
-
-    projectObserver = new IntersectionObserver((entries) => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                seenProjects.add(entry.target);
-
-                viewedProjects = seenProjects.size;
-
-            }
-
-        });
-
-    }, {
-        threshold: 0.5
-    });
-
-    document.querySelectorAll(".project-card").forEach(card => {
-        projectObserver.observe(card);
-    });
-
-}
-
-    // Contact Form
-    const form=document.getElementById("contact-form");
-
-    if(form){
-        form.addEventListener("submit",()=>{
-            contactSubmitted=true;
-        });
-    }
-
-}
 
 
 /* ---------------------------------------------------------------------------
@@ -1051,8 +970,6 @@ async function init() {
 
   updateScrollProgress();
   hideLoadingScreen();
-
-  initVisitorTracking();
 
   // GitHub dashboard (separate module in js/github.js)
   GitHubDashboard.init(AppState.config.site.githubUsername);
