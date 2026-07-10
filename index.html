@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sridhar M | Frontend Developer &amp; UI/UX Designer</title>
+  <meta name="description"
+    content="Portfolio of Aravind Kumar — Full Stack Developer, UI/UX Designer, and AI Engineer. Explore projects, skills, and experience.">
+
+  <!-- ===== SEO / Open Graph (edit per data/config.json site name) ===== -->
+  <meta property="og:title" content="Aravind Kumar | Full Stack Developer & UI/UX Designer">
+  <meta property="og:description" content="Explore projects, skills, certifications and experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/profile-placeholder.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- ===== Fonts ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ===== Bootstrap 5 ===== -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- ===== Font Awesome ===== -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- ===== AOS (Animate On Scroll) ===== -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+
+  <!-- ===== Site styles (order matters: tokens -> responsive -> animation keyframes) ===== -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+</head>
+
+<body>
+
+  <!-- ============================================================
+     LOADING SCREEN — hidden by app.js once window has loaded
+     ============================================================ -->
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <div class="loader-text">LOADING PORTFOLIO</div>
+  </div>
+
+  <!-- Page transition sweep, triggered briefly on nav clicks -->
+  <div id="page-transition"></div>
+
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Custom cursor (desktop only, see style.css @media(hover:none)) -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Toast notification (copy email, form success, etc.) -->
+  <div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg">Copied!</span></div>
+
+  <!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+  <header id="navbar">
+    <nav class="container nav-inner">
+      <a href="#hero" class="logo">Sridhar<span class="text-gradient">.</span></a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
+        <li><a href="#blog" class="nav-link">Blog</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language switch: English / Tamil -->
+        <button class="lang-toggle" id="lang-toggle" title="Switch language" aria-label="Switch language">
+          <span id="lang-label">EN</span>
+        </button>
+        <!-- Background music toggle -->
+        <button class="music-toggle" id="music-toggle" title="Toggle background music" aria-label="Toggle music">
+          <i class="fa-solid fa-music"></i>
+        </button>
+        <!-- Dark / light theme switcher -->
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+     1. HERO SECTION
+     ============================================================ -->
+  <section class="hero" id="hero">
+    <div id="particles-js"></div>
+    <div class="container hero-inner">
+      <div class="hero-text" data-aos="fade-up">
+        <div class="hero-eyebrow"><span class="dot"></span> Available for new opportunities</div>
+        <h1 class="hero-name" id="hero-name">Sridhar M</h1>
+        <div class="hero-typed-wrap">I am a <span id="typed-text"></span></div>
+        <p class="hero-intro" id="hero-intro">
+          I design and build products end-to-end — from the first wireframe to the deployed API.
+          I care about clean interfaces, fast software, and code that's a joy to maintain.
+        </p>
+        <div class="hero-actions">
+          <a href="resume/Resume.pdf" download class="btn btn-primary magnetic">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+          <a href="#contact" class="btn btn-outline magnetic">
+            <i class="fa-solid fa-paper-plane"></i> Contact Me
+          </a>
+        </div>
+        <div class="hero-socials" id="hero-socials"><!-- populated by app.js from config.json --></div>
+      </div>
+
+      <div class="hero-photo-wrap" data-aos="zoom-in">
+        <div class="photo-glow-ring">
+          <img src="assets/images/photo_above_50kb.jpg" alt="Portrait photo" class="hero-photo" id="hero-photo">
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span class="mouse"></span>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     2. ABOUT ME
+     ============================================================ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">About Me</span>
+        <h2 class="section-title">Get to know me a little better</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text" data-aos="fade-up">
+          <p id="about-description">Loading...</p>
+
+          <div class="personal-info-grid" id="personal-info-grid"><!-- populated from config.json --></div>
+
+          <h4 class="mb-3">Education</h4>
+          <div class="timeline" id="education-timeline"><!-- populated from education.json --></div>
+        </div>
+
+        <div class="about-experience" data-aos="fade-up">
+          <h4 class="mb-3">Experience</h4>
+          <div class="timeline" id="experience-timeline"><!-- populated from experience.json --></div>
+        </div>
+      </div>
+
+      <!-- Populated from config.json about.stats, counters animated by app.js -->
+      <div class="stats-grid" id="stats-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     3. SKILLS
+     ============================================================ -->
+  <section class="section" id="skills" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Skills</span>
+        <h2 class="section-title">Technologies I work with</h2>
+        <p class="section-subtitle">Hover or tap a category to explore. Progress bars animate as they enter view.</p>
+      </div>
+
+      <div class="skills-tabs" id="skills-tabs"><!-- populated from skills.json --></div>
+      <div class="skills-grid" id="skills-grid"><!-- populated from skills.json --></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     4. SERVICES
+     ============================================================ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Services</span>
+        <h2 class="section-title">What I can do for you</h2>
+      </div>
+      <div class="services-grid" id="services-grid"><!-- populated from config.json services --></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     5. PROJECTS
+     ============================================================ -->
+  <section class="section" id="projects" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Projects</span>
+        <h2 class="section-title">Things I've built</h2>
+        <p class="section-subtitle">Loaded dynamically from <code>data/projects.json</code> — filter by category.</p>
+      </div>
+
+      <div class="filter-bar" id="project-filter-bar"></div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     6. EXPERIENCE TIMELINE (full section anchor, content mirrored from About)
+     ============================================================ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Career</span>
+        <h2 class="section-title">Experience Timeline</h2>
+      </div>
+      <div class="timeline mx-auto" style="max-width: 720px;" id="experience-timeline-full"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     7. CERTIFICATES
+     ============================================================ -->
+  <section class="section" id="certificates" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Certificates</span>
+        <h2 class="section-title">Licenses &amp; Certifications</h2>
+        <p class="section-subtitle">Click any certificate to preview it in full size.</p>
+      </div>
+      <div class="certificates-grid" id="certificates-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     8. ACHIEVEMENTS
+     ============================================================ -->
+  <section class="section" id="achievements">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Achievements</span>
+        <h2 class="section-title">Hackathons, awards &amp; competitions</h2>
+      </div>
+      <div class="achievements-grid" id="achievements-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     9. GITHUB DASHBOARD
+     ============================================================ -->
+  <section class="section" id="github" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">GitHub</span>
+        <h2 class="section-title">Live GitHub Dashboard</h2>
+        <p class="section-subtitle">Fetched live from the GitHub public API — set <code>githubUsername</code> in
+          <code>data/config.json</code>.
+        </p>
+      </div>
+
+      <div class="github-dashboard" id="github-stats">
+        <div class="gh-stat-card card skeleton" style="height:120px;"></div>
+        <div class="gh-stat-card card skeleton" style="height:120px;"></div>
+        <div class="gh-stat-card card skeleton" style="height:120px;"></div>
+        <div class="gh-stat-card card skeleton" style="height:120px;"></div>
+      </div>
+
+      <div class="gh-extra-grid">
+        <div class="gh-panel card" data-aos="fade-up">
+          <h4>Contribution Graph</h4>
+          <div class="gh-contrib-graph" id="gh-contrib-graph"></div>
+          <h4 class="mt-4">Most Used Languages</h4>
+          <div class="gh-lang-bar" id="gh-lang-bar"></div>
+          <div class="gh-lang-list" id="gh-lang-list"></div>
+        </div>
+        <div class="gh-panel card" data-aos="fade-up">
+          <h4>Pinned Repositories</h4>
+          <div class="gh-pinned-list" id="gh-pinned-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     10. CODING PROFILES
+     ============================================================ -->
+  <section class="section" id="coding-profiles">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Elsewhere Online</span>
+        <h2 class="section-title">Coding Profiles</h2>
+      </div>
+      <div class="profiles-grid" id="profiles-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     11. TESTIMONIALS
+     ============================================================ -->
+  <section class="section" id="testimonials" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Testimonials</span>
+        <h2 class="section-title">What people say about working with me</h2>
+      </div>
+      <div class="testimonial-slider" data-aos="zoom-in">
+        <div class="testimonial-track" id="testimonial-track"></div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-arrow" id="testimonial-prev" aria-label="Previous testimonial"><i
+            class="fa-solid fa-arrow-left"></i></button>
+        <div class="slider-dots" id="testimonial-dots"></div>
+        <button class="slider-arrow" id="testimonial-next" aria-label="Next testimonial"><i
+            class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     12. PHOTO GALLERY
+     ============================================================ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Gallery</span>
+        <h2 class="section-title">Moments worth showing</h2>
+      </div>
+      <div class="gallery-filter" id="gallery-filter"></div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     13. BLOG
+     ============================================================ -->
+  <section class="section" id="blog" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Blog</span>
+        <h2 class="section-title">Latest Articles</h2>
+      </div>
+      <div class="blog-grid" id="blog-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     14. CONTACT
+     ============================================================ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-eyebrow">Contact</span>
+        <h2 class="section-title">Let's build something together</h2>
+        <p class="section-subtitle">Have a project in mind? Send a message and I'll get back to you soon.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" id="contact-info-list" data-aos="fade-right">
+          <!-- populated from config.json: phone, email, location, availability -->
+        </div>
+
+        <div class="contact-form-card card" data-aos="fade-up">
+          <!-- ===== EmailJS contact form =====
+             Set your serviceId / templateId / publicKey in data/config.json -> site.emailjs
+             app.js reads that config and wires up EmailJS on submit. -->
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label small text-secondary mb-2">Name</label>
+                <input type="text" class="form-control" name="name" id="form-name" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label class="form-label small text-secondary mb-2">Email</label>
+                <input type="email" class="form-control" name="email" id="form-email" required
+                  placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label small text-secondary mb-2">Subject</label>
+              <input type="text" class="form-control" name="subject" id="form-subject" required
+                placeholder="What's this about?">
+            </div>
+            <div class="form-group">
+              <label class="form-label small text-secondary mb-2">Message</label>
+              <textarea class="form-control" name="message" id="form-message" required
+                placeholder="Tell me a bit about your project..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 magnetic" id="form-submit-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     15. FOOTER
+     ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="logo">Sridhar<span class="text-gradient">.</span></a>
+          <p>Frontend Developer &amp; UI/UX Designer building thoughtful, fast, and accessible software.</p>
+          <div class="footer-socials" id="footer-socials"></div>
+        </div>
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="resume/Resume.pdf" download>Resume</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#github">GitHub Stats</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="footer-year"></span> Sridhar. All rights reserved.</span>
+        <span>Built with HTML, CSS &amp; JavaScript</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+     FLOATING ACTION BUTTONS
+     ============================================================ -->
+  <div class="fab-stack">
+    <a href="#" class="fab fab-whatsapp" id="fab-whatsapp" target="_blank" rel="noopener" title="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="fab fab-top" id="back-to-top" title="Back to top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Visitor counter badge -->
+  <div class="visitor-badge glass" id="visitor-badge">
+    <i class="fa-solid fa-eye"></i> <span id="visitor-count">—</span> visits
+  </div>
+
+  <!-- ============================================================
+     LIGHTBOX (shared by Certificates + Gallery)
+     ============================================================ -->
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+      <img src="" alt="" id="lightbox-img">
+      <div class="lightbox-body" id="lightbox-body"></div>
+    </div>
+  </div>
+
+  <!-- Optional ambient background music (replace src with your own royalty-free track) -->
+  <audio id="bg-music" loop preload="none">
+    <source src="assets/audio/ambient.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  increment
+} from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAEVfsEcUzckpS5cBAiqh6LWf34G2qEWRQ",
+  authDomain: "sridhar-portfolio-1063e.firebaseapp.com",
+  projectId: "sridhar-portfolio-1063e",
+  storageBucket: "sridhar-portfolio-1063e.firebasestorage.app",
+  messagingSenderId: "74608630373",
+  appId: "1:74608630373:web:ab9e8d767310121a77c48c",
+  measurementId: "G-CF07M8M465"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Firestore Document
+const counterRef = doc(db, "visitors", "counter");
+
+// Visitor Count Element
+const visitorElement = document.getElementById("visitor-count");
+
+async function updateVisitorCount() {
+  try {
+
+    const lastVisit = localStorage.getItem("portfolio-last-visit");
+    const now = Date.now();
+
+    // Count only once every 24 hours
+    if (!lastVisit || now - Number(lastVisit) > 24 * 60 * 60 * 1000) {
+
+      await setDoc(
+        counterRef,
+        {
+          count: increment(1)
+        },
+        { merge: true }
+      );
+
+      localStorage.setItem("portfolio-last-visit", now);
+    }
+
+    // Read visitor count
+    const snap = await getDoc(counterRef);
+
+    if (snap.exists()) {
+      visitorElement.textContent = snap.data().count.toLocaleString();
+    } else {
+      visitorElement.textContent = "0";
+    }
+
+  } catch (error) {
+    console.error("Visitor Counter Error:", error);
+    visitorElement.textContent = "--";
+  }
+}
+
+updateVisitorCount();
+</script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <script src="js/theme.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
