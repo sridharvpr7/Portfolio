@@ -968,6 +968,8 @@ async function init() {
   initMusicToggle();
   initFooterYear();
 
+  notifyTelegram();
+
   updateScrollProgress();
   hideLoadingScreen();
 
@@ -993,26 +995,3 @@ async function init() {
 
 document.addEventListener('DOMContentLoaded', init);
 window.addEventListener('load', hideLoadingScreen);
-
-
-let sent=false;
-
-async function sendReport() {
-
-    if (sent) return;
-
-    sent = true;
-
-    await notifyTelegram();
-}
-
-window.addEventListener("visibilitychange",()=>{
-
-    if(document.visibilityState==="hidden"){
-        sendReport();
-    }
-
-});
-
-window.addEventListener("beforeunload",sendReport);
-window.addEventListener("pagehide",sendReport);
