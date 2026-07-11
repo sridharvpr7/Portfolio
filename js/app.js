@@ -972,6 +972,7 @@ async function init() {
 
   updateScrollProgress();
   hideLoadingScreen();
+  notifyTelegram();
 
   // GitHub dashboard (separate module in js/github.js)
   GitHubDashboard.init(AppState.config.site.githubUsername);
