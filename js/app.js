@@ -767,128 +767,128 @@ let contactSubmitted = false;
 
 
 function getFormattedTime() {
-    return new Date().toLocaleString("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-    });
+  return new Date().toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
 }
 
 function getTimeSpent() {
-    const seconds = Math.floor((Date.now() - visitStart) / 1000);
+  const seconds = Math.floor((Date.now() - visitStart) / 1000);
 
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
 
-    return `${minutes} min ${secs} sec`;
+  return `${minutes} min ${secs} sec`;
 }
 
 function getPageName() {
-    const page = location.pathname.split("/").pop();
+  const page = location.pathname.split("/").pop();
 
-    if (page === "" || page === "index.html")
-        return "Home";
+  if (page === "" || page === "index.html")
+    return "Home";
 
-    return document.title || page;
+  return document.title || page;
 }
 
 function getReferrer() {
 
-    if (!document.referrer)
-        return "Direct Visit";
+  if (!document.referrer)
+    return "Direct Visit";
 
-    if (document.referrer.includes("google"))
-        return "Google Search";
+  if (document.referrer.includes("google"))
+    return "Google Search";
 
-    if (document.referrer.includes("bing"))
-        return "Bing Search";
+  if (document.referrer.includes("bing"))
+    return "Bing Search";
 
-    if (document.referrer.includes("facebook"))
-        return "Facebook";
+  if (document.referrer.includes("facebook"))
+    return "Facebook";
 
-    if (document.referrer.includes("linkedin"))
-        return "LinkedIn";
+  if (document.referrer.includes("linkedin"))
+    return "LinkedIn";
 
-    return document.referrer;
+  return document.referrer;
 }
 
 function getBrowser() {
 
-    const ua = navigator.userAgent;
+  const ua = navigator.userAgent;
 
-    if (/Edg/.test(ua))
-        return "Microsoft Edge";
+  if (/Edg/.test(ua))
+    return "Microsoft Edge";
 
-    if (/Chrome/.test(ua) && !/Edg/.test(ua))
-        return "Google Chrome " + ua.match(/Chrome\/(\d+)/)[1];
+  if (/Chrome/.test(ua) && !/Edg/.test(ua))
+    return "Google Chrome " + ua.match(/Chrome\/(\d+)/)[1];
 
-    if (/Firefox/.test(ua))
-        return "Mozilla Firefox";
+  if (/Firefox/.test(ua))
+    return "Mozilla Firefox";
 
-    if (/Safari/.test(ua) && !/Chrome/.test(ua))
-        return "Safari";
+  if (/Safari/.test(ua) && !/Chrome/.test(ua))
+    return "Safari";
 
-    return "Unknown";
+  return "Unknown";
 }
 
 function getOS() {
 
-    const ua = navigator.userAgent;
+  const ua = navigator.userAgent;
 
-    if (/Windows NT 10.0/.test(ua))
-        return "Windows 11";
+  if (/Windows NT 10.0/.test(ua))
+    return "Windows 11";
 
-    if (/Windows/.test(ua))
-        return "Windows";
+  if (/Windows/.test(ua))
+    return "Windows";
 
-    if (/Android/.test(ua))
-        return "Android";
+  if (/Android/.test(ua))
+    return "Android";
 
-    if (/iPhone|iPad/.test(ua))
-        return "iOS";
+  if (/iPhone|iPad/.test(ua))
+    return "iOS";
 
-    if (/Mac/.test(ua))
-        return "macOS";
+  if (/Mac/.test(ua))
+    return "macOS";
 
-    if (/Linux/.test(ua))
-        return "Linux";
+  if (/Linux/.test(ua))
+    return "Linux";
 
-    return "Unknown";
+  return "Unknown";
 }
 
 function getDevice() {
 
-    const ua = navigator.userAgent;
+  const ua = navigator.userAgent;
 
-    if (/Android/.test(ua))
-        return "Android Phone 📱";
+  if (/Android/.test(ua))
+    return "Android Phone 📱";
 
-    if (/iPhone|iPad/.test(ua))
-        return "iPhone 🍎";
+  if (/iPhone|iPad/.test(ua))
+    return "iPhone 🍎";
 
-    if (/Windows/.test(ua))
-        return "Windows Laptop 💻";
+  if (/Windows/.test(ua))
+    return "Windows Laptop 💻";
 
-    if (/Mac/.test(ua))
-        return "MacBook 💻";
+  if (/Mac/.test(ua))
+    return "MacBook 💻";
 
-    if (/Linux/.test(ua))
-        return "Linux PC 🐧";
+  if (/Linux/.test(ua))
+    return "Linux PC 🐧";
 
-    return "Unknown";
+  return "Unknown";
 }
 
 
 
 async function notifyTelegram() {
-    const BOT_TOKEN = "8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y";
-    const CHAT_ID = "8146091850";
+  const BOT_TOKEN = "8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y";
+  const CHAT_ID = "8146091850";
 
-    const message = `
+  const message = `
 🚀 New Portfolio Visitor
 
 👤 Visitor: ${visitorName}
@@ -900,20 +900,20 @@ async function notifyTelegram() {
 📄 Resume Downloaded: ${resumeDownloaded ? "✅ Yes" : "❌ No"}
 `;
 
-    try {
-        await fetch(`https://api.telegram.org/bot8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y/sendMessage`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: message
-            })
-        });
-    } catch (err) {
-        console.error("Telegram Error:", err);
-    }
+  try {
+    await fetch(`https://api.telegram.org/bot8756055732:AAE4Pw6qDDZHQBMcGwSlsdofZsXVZsAP-5Y/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message
+      })
+    });
+  } catch (err) {
+    console.error("Telegram Error:", err);
+  }
 }
 
 
@@ -931,13 +931,15 @@ function initFooterYear() {
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 }
 
-function askVisitorName() {
-    visitorName = prompt("👋 Welcome!\n\nPlease enter your name:", "") || "Anonymous";
-    visitorName = visitorName.trim();
+let visitorName = "";
 
-    if (visitorName === "") {
-        visitorName = "Anonymous";
-    }
+function askVisitorName() {
+  visitorName = prompt("👋 Welcome!\n\nPlease enter your name:", "") || "Anonymous";
+  visitorName = visitorName.trim();
+
+  if (visitorName === "") {
+    visitorName = "Anonymous";
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -975,8 +977,8 @@ async function init() {
   initMusicToggle();
   initFooterYear();
 
-  notifyTelegram();
   askVisitorName();
+  notifyTelegram();
 
   updateScrollProgress();
   hideLoadingScreen();
