@@ -1995,3 +1995,126 @@ footer {
     opacity: 0;
   }
 }
+
+.welcome-modal{
+    position: fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.75);
+    z-index:999999;
+}
+
+.welcome-box{
+    width:90%;
+    max-width:420px;
+    background:#161b22;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    color:#fff;
+    animation:popup .35s ease;
+}
+
+.welcome-box h2{
+    margin-bottom:12px;
+    font-size:2rem;
+}
+
+.welcome-box p{
+    color:#bdbdbd;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.welcome-box input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:#232b36;
+    color:#fff;
+    font-size:16px;
+    margin-bottom:18px;
+}
+
+.welcome-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    background:#00d4ff;
+    color:#000;
+}
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.welcome-banner{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:9998;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    padding:12px 20px;
+    background:linear-gradient(90deg,#2563eb,#06b6d4,#14b8a6);
+    color:#fff;
+    font-size:15px;
+    font-weight:500;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    animation:slideDown .6s ease;
+}
+
+.welcome-banner .wave{
+    font-size:22px;
+    animation:wave 2s infinite;
+}
+
+#close-banner{
+    position:absolute;
+    right:18px;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+body{
+    padding-top:60px;
+}
+
+@keyframes slideDown{
+    from{
+        transform:translateY(-100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+
+@keyframes wave{
+    0%,100%{transform:rotate(0deg);}
+    20%{transform:rotate(20deg);}
+    40%{transform:rotate(-10deg);}
+    60%{transform:rotate(20deg);}
+    80%{transform:rotate(-5deg);}
+}

@@ -931,15 +931,69 @@ function initFooterYear() {
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 }
 
-let visitorName = "";
+function initWelcomeBanner() {
+  const banner = document.getElementById("welcome-banner");
+  const text = document.getElementById("welcome-text");
+  const closeBtn = document.getElementById("close-banner");
+
+  if (!banner || !text || !closeBtn) return;
+
+  const name = localStorage.getItem("visitorName");
+
+  if (name) {
+    text.innerHTML = `👋 Welcome back, <strong>${name}</strong>! Thanks for visiting my portfolio.`;
+  } else {
+    text.innerHTML = "👋 Welcome! Explore my projects, skills, and achievements.";
+  }
+
+  closeBtn.addEventListener("click", () => {
+    banner.style.display = "none";
+  });
+}
+
+
+
+let visitorName = localStorage.getItem("visitorName") || "";
 
 function askVisitorName() {
-  visitorName = prompt("👋 Welcome!\n\nPlease enter your name:", "") || "Anonymous";
-  visitorName = visitorName.trim();
 
-  if (visitorName === "") {
-    visitorName = "Anonymous";
-  }
+    if (visitorName) {
+        notifyTelegram();
+        return;
+    }
+
+    const modal = document.getElementById("welcome-modal");
+    const input = document.getElementById("visitor-name");
+    const btn = document.getElementById("visitor-continue");
+
+    if (!modal || !input || !btn) {
+        console.error("Welcome modal elements not found.");
+        return;
+    }
+
+    modal.style.display = "flex";
+
+    function submit() {
+
+        visitorName = input.value.trim();
+
+        if (visitorName === "")
+            visitorName = "Anonymous";
+
+        localStorage.setItem("visitorName", visitorName);
+
+        modal.style.display = "none";
+
+        notifyTelegram();
+    }
+
+    btn.onclick = submit;
+
+    input.onkeydown = function(e){
+        if(e.key === "Enter"){
+            submit();
+        }
+    };
 }
 
 /* ---------------------------------------------------------------------------
@@ -974,11 +1028,11 @@ async function init() {
   initCounters();
   initLightbox();
   initLanguageSwitch();
-  initMusicToggle();
+  initMusicToggle(); 
   initFooterYear();
+  initWelcomeBanner();
 
   askVisitorName();
-  notifyTelegram();
 
   updateScrollProgress();
   hideLoadingScreen();

@@ -64,6 +64,17 @@
      NAVBAR
      ============================================================ -->
   <header id="navbar">
+
+    <div id="welcome-banner" class="welcome-banner">
+    <span class="wave">👋</span>
+    <span id="welcome-text">
+        Welcome to my portfolio! Thank you for visiting.
+    </span>
+    <button id="close-banner" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+
     <nav class="container nav-inner">
       <a href="#hero" class="logo">Sridhar<span class="text-gradient">.</span></a>
 
@@ -556,6 +567,27 @@ updateVisitorCount();
   <script src="js/particles.js"></script>
   <script src="js/github.js"></script>
   <script src="js/app.js"></script>
+
+  <div id="welcome-modal" class="welcome-modal">
+  <div class="welcome-box">
+    <h2>👋 Welcome!</h2>
+    <p>
+      Thank you for visiting my portfolio.<br>
+      I'm <strong>Sridhar</strong>, and I'm excited to have you here.
+    </p>
+
+    <input
+      type="text"
+      id="visitor-name"
+      placeholder="Enter your name"
+      maxlength="40"
+    >
+
+    <button id="visitor-continue">
+      Continue →
+    </button>
+  </div>
+</div>
 </body>
 
 </html>
