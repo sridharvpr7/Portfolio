@@ -891,15 +891,13 @@ async function notifyTelegram() {
     const message = `
 🚀 New Portfolio Visitor
 
-👤 Visitor: Anonymous
+👤 Visitor: ${visitorName}
 🕒 Time: ${getFormattedTime()}
 🌐 Website: https://sridharvpr7.github.io/portfolio/
 📱 Device: ${getDevice()}
 🖥 Browser: ${getBrowser()}
 🔗 Referrer: ${getReferrer()}
 📄 Resume Downloaded: ${resumeDownloaded ? "✅ Yes" : "❌ No"}
-
-Thank you for visiting! 😊
 `;
 
     try {
@@ -931,6 +929,15 @@ function hideLoadingScreen() {
 }
 function initFooterYear() {
   document.getElementById('footer-year').textContent = new Date().getFullYear();
+}
+
+function askVisitorName() {
+    visitorName = prompt("👋 Welcome!\n\nPlease enter your name:", "") || "Anonymous";
+    visitorName = visitorName.trim();
+
+    if (visitorName === "") {
+        visitorName = "Anonymous";
+    }
 }
 
 /* ---------------------------------------------------------------------------
@@ -969,10 +976,10 @@ async function init() {
   initFooterYear();
 
   notifyTelegram();
+  askVisitorName();
 
   updateScrollProgress();
   hideLoadingScreen();
-  notifyTelegram();
 
   // GitHub dashboard (separate module in js/github.js)
   GitHubDashboard.init(AppState.config.site.githubUsername);
