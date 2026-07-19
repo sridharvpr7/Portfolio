@@ -893,7 +893,7 @@ async function notifyTelegram() {
 
 👤 Visitor: ${visitorName}
 🕒 Time: ${getFormattedTime()}
-🌐 Website: https://sridharvpr7.github.io/portfolio
+🌐 Website: https://sridharvpr7.github.io/Portfolio/
 📱 Device: ${getDevice()}
 🖥 Browser: ${getBrowser()}
 🔗 Referrer: ${getReferrer()}
