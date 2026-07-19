@@ -41,8 +41,8 @@
     ]
   },
   "codingProfiles": [
-    { "platform": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/sridharvpr7", "stat": "5 repos" },
-    { "platform": "Leetcode", "icon": "fa-brands fa-leetcode", "url": "https://github.com/sridharvpr7", "stat": "0" }
+    { "platform": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/sridharvpr7", "stat": "9 repos" },
+    { "platform": "LeetCode", "icon": "fa-solid fa-code", "url": "https://leetcode.com/yourusername", "stat": "20+ solved" }
   ],
   "services": [
     { "icon": "fa-solid fa-laptop-code", "title": "Web Development", "description": "Responsive, performant websites built with modern frameworks and clean, maintainable code." },

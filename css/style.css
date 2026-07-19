@@ -720,30 +720,6 @@ code {
   padding: 6px;
 }
 
-.photo-glow-ring::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 30px;
-  background: conic-gradient(from 0deg, var(--color-primary), var(--color-secondary), var(--color-accent), var(--color-primary));
-  animation: rotate-ring 8s linear infinite;
-  opacity: 0.75;
-}
-
-.photo-glow-ring::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 28px;
-  box-shadow: 0 0 70px 6px rgba(var(--color-primary-rgb), 0.28);
-}
-
-@keyframes rotate-ring {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .hero-photo {
   position: relative;
   z-index: 2;
