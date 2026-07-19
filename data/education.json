@@ -1,0 +1,23 @@
+[
+  {
+    "level": "College",
+    "institution": "jnn institute of engineering,chennai",
+    "degree": "B.E.  Electronics and Communication Engineering",
+    "marks": "7.98 CGPA",
+    "year": "2025 — 2029"
+  },
+  {
+    "level": "Higher Secondary",
+    "institution": "veludayar higher secondary school,thiruvaur",
+    "degree": "HSC — Computer Science",
+    "marks": "83.67%",
+    "year": "2024 — 2025"
+  },
+  {
+    "level": "Secondary",
+    "institution": "veludayar higher secondary school,thiruvaur ",
+    "degree": "SSLC",
+    "marks": "83.80%",
+    "year": "2022-2023"
+  }
+]

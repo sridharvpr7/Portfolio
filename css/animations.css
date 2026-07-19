@@ -1,0 +1,49 @@
+/* ==========================================================================
+   ANIMATIONS
+   Custom keyframes not covered by AOS/GSAP. AOS handles most scroll-reveals
+   via data-aos attributes directly in the HTML.
+   ========================================================================== */
+
+/* Page transition overlay (shown briefly on internal nav clicks) */
+#page-transition {
+  position: fixed; inset: 0; z-index: 9997; background: var(--color-primary);
+  transform: translateY(-100%); pointer-events: none;
+}
+#page-transition.active { animation: page-sweep 0.7s var(--ease); }
+@keyframes page-sweep {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Fade-in-up used for elements without AOS (JS-triggered) */
+.reveal-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal-up.in { opacity: 1; transform: translateY(0); }
+
+/* Gentle ambient float for decorative elements */
+.float-ambient { animation: float-ambient 6s ease-in-out infinite; }
+@keyframes float-ambient { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+/* Glow pulse used on primary buttons occasionally (e.g. contact CTA) */
+.pulse-glow { animation: pulse-glow 2.4s ease-in-out infinite; }
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(var(--color-primary-rgb), 0); }
+}
+
+/* Skeleton loading shimmer, used while dynamic JSON content loads */
+.skeleton {
+  background: linear-gradient(90deg, var(--border-color) 25%, rgba(148,163,184,0.25) 37%, var(--border-color) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes skeleton-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+/* Counter number pop (used when stat counters finish animating) */
+.pop-once { animation: pop-once 0.4s var(--ease); }
+@keyframes pop-once { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* Marquee for skill/tech strip (optional decorative use) */
+.marquee-track { display: flex; width: max-content; animation: marquee 24s linear infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
