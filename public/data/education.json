@@ -1,25 +1,54 @@
 {
   "entries": [
     {
-      "id": "edu-1",
-      "institution": "Your College / University Name",
-      "degree": "Bachelor of Engineering",
-      "field": "Electronics and Communication Engineering",
-      "startYear": 2022,
-      "endYear": 2026,
-      "status": "In Progress",
-      "location": "India",
-      "description": "Studying core ECE subjects including digital electronics, signals and systems, VLSI design, embedded systems, analog circuits, and communication systems.",
-      "highlights": [
-        "Digital Electronics & Logic Design",
-        "Signals and Systems",
-        "VLSI Design Fundamentals",
-        "Embedded Systems with Microcontrollers",
-        "Communication Systems",
-        "Verilog HDL"
-      ],
-      "type": "education",
-      "order": 1
-    }
+  "id": "edu-1",
+  "institution": "Veludayar Government Aided Higher Secondary School, Thiruvarur",
+  "degree": "Secondary School Leaving Certificate (SSLC)",
+  "field": "General Education",
+  "startYear": 2022,
+  "endYear": 2023,
+  "status": "Completed",
+  "location": "Thiruvarur, Tamil Nadu, India",
+  "description": "Completed 10th Standard under the Tamil Nadu State Board of School Examinations, securing 419 total marks.",
+  "highlights": [
+  "83.8%"
+],
+  "type": "education",
+  "order": 1
+    },
+
+    {
+  "id": "edu-2",
+  "institution": "Veludayar Government Aided Higher Secondary School, Thiruvarur",
+  "degree": "Higher Secondary First Year (Class XI)",
+  "field": "General Education",
+  "startYear": 2023,
+  "endYear": 2024,
+  "status": "Completed",
+  "location": "Thiruvarur, Tamil Nadu, India",
+  "description": "Completed Higher Secondary First Year under the Tamil Nadu State Board, securing 452 total marks.",
+  "highlights": [
+  "75.3%"
+],
+  "type": "education",
+  "order": 2
+},
+
+{
+  "id": "edu-3",
+  "institution": "Veludayar Government Aided Higher Secondary School, Thiruvarur",
+  "degree": "Higher Secondary Second Year (Class XII)",
+  "field": "General Education",
+  "startYear": 2024,
+  "endYear": 2025,
+  "status": "Completed",
+  "location": "Thiruvarur, Tamil Nadu, India",
+  "description": "Completed Higher Secondary Second Year under the Tamil Nadu State Board, securing 502 total marks with a focus on Physics, Chemistry, Computer Science, and Mathematics.",
+  "highlights": [
+  "83.67%"
+],
+  "type": "education",
+  "order": 3
+}
   ]
 }
