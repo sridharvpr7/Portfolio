@@ -1,0 +1,37 @@
+{
+  "enabled": false,
+  "_comment": "Set enabled=true only after configuring all required environment variables (DATABASE_URL, TELEGRAM_BOT_TOKEN, etc.). Missing/invalid config fails closed — nothing breaks.",
+  "visitorAnalytics": {
+    "enabled": true,
+    "liveCounterEnabled": true,
+    "totalVisitsEnabled": true,
+    "uniqueVisitorsEnabled": true,
+    "todayVisitsEnabled": true,
+    "activeTimeoutSeconds": 120,
+    "heartbeatIntervalSeconds": 30,
+    "pollIntervalMs": 30000,
+    "anonymousTracking": true,
+    "retentionDays": 365
+  },
+  "googleSignIn": {
+    "enabled": true,
+    "promptLocation": "footer"
+  },
+  "telegram": {
+    "enabled": true,
+    "anonymousNotificationsEnabled": true,
+    "repeatVisitNotificationsEnabled": true,
+    "deduplicationWindowSeconds": 3600
+  },
+  "emailGreeting": {
+    "enabled": true,
+    "requiresExplicitConsent": true,
+    "sendOnlyOnce": true,
+    "subject": "Welcome to my portfolio!"
+  },
+  "privacy": {
+    "showPrivacyNotice": true,
+    "deletionContactEmail": "your.email@example.com",
+    "retentionPolicyDays": 365
+  }
+}

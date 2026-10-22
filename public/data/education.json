@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "id": "edu-1",
+      "institution": "Your College / University Name",
+      "degree": "Bachelor of Engineering",
+      "field": "Electronics and Communication Engineering",
+      "startYear": 2022,
+      "endYear": 2026,
+      "status": "In Progress",
+      "location": "India",
+      "description": "Studying core ECE subjects including digital electronics, signals and systems, VLSI design, embedded systems, analog circuits, and communication systems.",
+      "highlights": [
+        "Digital Electronics & Logic Design",
+        "Signals and Systems",
+        "VLSI Design Fundamentals",
+        "Embedded Systems with Microcontrollers",
+        "Communication Systems",
+        "Verilog HDL"
+      ],
+      "type": "education",
+      "order": 1
+    }
+  ]
+}

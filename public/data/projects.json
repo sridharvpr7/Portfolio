@@ -1,0 +1,92 @@
+{
+  "projects": [
+    {
+      "id": "elders-veil",
+      "title": "Elder's Veil",
+      "shortSummary": "A comic-reading platform with rich reading experience, curated collections, and user authentication.",
+      "problem": "Existing comic platforms have cluttered, advertisement-heavy interfaces that interrupt the reading experience. Readers want a clean, immersive platform that respects the art.",
+      "solution": "Built a clean, focused comic-reading web app with smooth page navigation, category browsing, and a distraction-free reader mode.",
+      "features": [
+        "Clean, immersive comic reader interface",
+        "User authentication and profiles",
+        "Curated comic collections and categories",
+        "Responsive design for phone and desktop reading",
+        "Smooth page-turn navigation"
+      ],
+      "technologies": ["React", "JavaScript", "CSS3", "Node.js", "MongoDB", "Express.js", "REST API"],
+      "category": "full-stack",
+      "status": "In Development",
+      "featured": true,
+      "visible": true,
+      "order": 1,
+      "coverImage": "",
+      "gallery": [],
+      "githubUrl": "",
+      "liveDemoUrl": "",
+      "startDate": "2024-01",
+      "tags": ["web", "full-stack", "mongodb", "react"]
+    },
+    {
+      "id": "portfolio-site",
+      "title": "ECE × Dev Portfolio",
+      "shortSummary": "This very portfolio — a cinematic, JSON-driven personal website bridging electronics engineering and software development.",
+      "problem": "Generic portfolio templates fail to communicate the dual nature of an ECE student who builds software — they either look too engineering-focused or too design-focused.",
+      "solution": "Designed a custom portfolio with a visual language that transitions from electronic circuit traces to software code, communicating both identities as one coherent technical mind.",
+      "features": [
+        "Cinematic intro sequence with circuit-to-code animation",
+        "JSON-driven content — edit data without touching code",
+        "Full dark/light theme system with persistence",
+        "Dual-identity section for ECE and software",
+        "Framer Motion animation system",
+        "Fully responsive across all screen sizes",
+        "Deployed on Vercel with zero backend"
+      ],
+      "technologies": ["React", "TypeScript", "Vite", "Framer Motion", "CSS Variables", "JSON", "Vercel"],
+      "category": "frontend",
+      "status": "Complete",
+      "featured": true,
+      "visible": true,
+      "order": 2,
+      "coverImage": "",
+      "gallery": [],
+      "githubUrl": "",
+      "liveDemoUrl": "",
+      "startDate": "2024-10",
+      "tags": ["web", "frontend", "react", "typescript", "design"]
+    },
+    {
+      "id": "verilog-alu",
+      "title": "4-bit ALU in Verilog",
+      "shortSummary": "A 4-bit Arithmetic Logic Unit designed in Verilog HDL with support for addition, subtraction, AND, OR, XOR, and comparison operations.",
+      "problem": "Understanding how CPUs process data at the hardware level requires building the fundamental computation unit from scratch.",
+      "solution": "Implemented a fully functional 4-bit ALU in Verilog with a comprehensive testbench, simulating all supported operations and verifying correct output and carry/zero flags.",
+      "features": [
+        "Supports ADD, SUB, AND, OR, XOR, and comparison operations",
+        "Carry-out and zero flag outputs",
+        "Modular RTL design",
+        "Simulation testbench with waveform verification",
+        "Clean, commented Verilog code"
+      ],
+      "technologies": ["Verilog HDL", "RTL Design", "Digital Logic", "Simulation"],
+      "category": "vlsi",
+      "status": "Complete",
+      "featured": true,
+      "visible": true,
+      "order": 3,
+      "coverImage": "",
+      "gallery": [],
+      "githubUrl": "",
+      "liveDemoUrl": "",
+      "startDate": "2024-03",
+      "tags": ["ece", "vlsi", "verilog", "digital-logic"]
+    }
+  ],
+  "categories": [
+    { "id": "all", "label": "All Projects" },
+    { "id": "full-stack", "label": "Full-Stack" },
+    { "id": "frontend", "label": "Frontend" },
+    { "id": "vlsi", "label": "VLSI & Verilog" },
+    { "id": "embedded", "label": "Embedded" },
+    { "id": "ece", "label": "ECE" }
+  ]
+}

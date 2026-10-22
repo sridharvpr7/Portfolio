@@ -1,0 +1,63 @@
+# render.yaml — Render Blueprint for the portfolio web service.
+# https://render.com/docs/blueprint-spec
+#
+# This file provisions a single Render Web Service.
+# All secret values MUST be set in the Render Dashboard
+# (Environment → Environment Variables), NOT in this file.
+#
+# After deploying, register your Render service URL in:
+#   - Google Cloud Console → OAuth 2.0 → Authorized JavaScript origins
+#   - Telegram webhook (see README § Telegram Bot Setup)
+
+services:
+  - type: web
+    name: portfolio
+    runtime: node
+    region: oregon   # Change to your preferred region (oregon | frankfurt | singapore | ohio)
+    plan: free       # Change to starter/standard for production use
+
+    # Commands
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+
+    # Node version — keep in sync with your local environment
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+
+      # ── Build-time variables (available to Vite during `npm run build`) ──
+      # VITE_ prefix exposes variables to the frontend bundle.
+      # These are NOT secret, but must be set before the build runs.
+      - key: VITE_GOOGLE_CLIENT_ID
+        sync: false   # Set in Render Dashboard — value differs per environment
+
+      # ── Server-side runtime variables (never exposed to the browser) ──
+      # Set every variable below in the Render Dashboard.
+      # Leave this file as-is; do NOT put real values here.
+
+      - key: DATABASE_URL
+        sync: false   # Neon PostgreSQL connection string
+
+      - key: GOOGLE_CLIENT_ID
+        sync: false   # Google OAuth 2.0 Web Client ID (server-side verification)
+
+      - key: SESSION_SECRET
+        sync: false   # Random 32+ char secret — generate: openssl rand -base64 32
+
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false   # Optional — from @BotFather
+
+      - key: TELEGRAM_CHAT_ID
+        sync: false   # Optional — your numeric Telegram user ID
+
+      - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false   # Optional — random string matching your setWebhook call
+
+      - key: RESEND_API_KEY
+        sync: false   # Optional — from resend.com
+
+      - key: EMAIL_FROM_ADDRESS
+        sync: false   # Optional — verified sender e.g. "Sridhar <hello@yourdomain.com>"
+
+      - key: APP_BASE_URL
+        sync: false   # Your Render URL e.g. https://portfolio-xxxx.onrender.com

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sridhar | ECE & Full-Stack Developer</title>
+    <meta name="description" content="Electronics and Communication Engineering student building real products — from Verilog RTL designs to full-stack web applications." />
+    <meta name="keywords" content="ECE, electronics engineering, full-stack developer, Verilog, React, web development, VLSI, embedded systems, portfolio" />
+    <meta name="author" content="Sridhar" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sridhar | ECE & Full-Stack Developer" />
+    <meta property="og:description" content="Bridging the world of circuits and code — ECE student and full-stack developer." />
+    <meta property="og:image" content="/assets/profile/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sridhar | ECE & Full-Stack Developer" />
+    <meta name="twitter:description" content="Bridging the world of circuits and code." />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      try {
+        var t = localStorage.getItem('portfolio-theme');
+        document.documentElement.setAttribute('data-theme', (t === 'light' || t === 'dark') ? t : 'dark');
+      } catch(e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
