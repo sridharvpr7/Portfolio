@@ -9,9 +9,10 @@ export interface WelcomeEmailData {
 
 export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM_ADDRESS || 'Sridhar <noreply@example.com>';
-  if (!apiKey) {
-    console.error('[email] RESEND_API_KEY not set');
+  const from = process.env.EMAIL_FROM_ADDRESS;
+  if (!apiKey || !from) {
+    if (!apiKey) console.warn('[email] RESEND_API_KEY not set; email disabled');
+    if (!from) console.warn('[email] EMAIL_FROM_ADDRESS not configured; email disabled until verified sender domain is set');
     return false;
   }
 

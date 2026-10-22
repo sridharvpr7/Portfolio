@@ -59,5 +59,3 @@ services:
       - key: EMAIL_FROM_ADDRESS
         sync: false   # Optional — verified sender e.g. "Sridhar <hello@yourdomain.com>"
 
-      - key: APP_BASE_URL
-        sync: false   # Your Render URL e.g. https://portfolio-xxxx.onrender.com

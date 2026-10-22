@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "_comment": "Set enabled=true only after configuring all required environment variables (DATABASE_URL, TELEGRAM_BOT_TOKEN, etc.). Missing/invalid config fails closed — nothing breaks.",
   "visitorAnalytics": {
     "enabled": true,

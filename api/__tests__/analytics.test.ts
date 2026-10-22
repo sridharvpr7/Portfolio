@@ -331,6 +331,7 @@ describe('15. Telegram and Email Provider Failures Handled Safely', () => {
 
   it('sendWelcomeEmail returns false safely on provider failure', async () => {
     process.env.RESEND_API_KEY = 'mock-resend-key';
+    process.env.EMAIL_FROM_ADDRESS = 'Sridhar <verified@example.com>';
     const originalFetch = global.fetch;
     global.fetch = vi.fn().mockRejectedValue(new Error('Resend unreachable'));
 
@@ -343,6 +344,30 @@ describe('15. Telegram and Email Provider Failures Handled Safely', () => {
     expect(result).toBe(false);
 
     global.fetch = originalFetch;
+    delete process.env.EMAIL_FROM_ADDRESS;
+  });
+
+  it('sendWelcomeEmail returns false safely when credentials or sender address are missing', async () => {
+    const { sendWelcomeEmail } = await import('../lib/email');
+    delete process.env.RESEND_API_KEY;
+    delete process.env.EMAIL_FROM_ADDRESS;
+
+    const res1 = await sendWelcomeEmail({
+      to: 'visitor@example.com',
+      name: 'Visitor',
+      subject: 'Welcome',
+    });
+    expect(res1).toBe(false);
+
+    process.env.RESEND_API_KEY = 'mock-key';
+    // EMAIL_FROM_ADDRESS still missing
+    const res2 = await sendWelcomeEmail({
+      to: 'visitor@example.com',
+      name: 'Visitor',
+      subject: 'Welcome',
+    });
+    expect(res2).toBe(false);
+    delete process.env.RESEND_API_KEY;
   });
 });
 
@@ -363,6 +388,15 @@ describe('16. Missing or Invalid Environment Variables', () => {
     vi.resetModules();
     const { isTelegramEnabled } = await import('../lib/config');
     expect(isTelegramEnabled()).toBe(false);
+  });
+
+  it('disables email features when EMAIL_FROM_ADDRESS or RESEND_API_KEY is missing', async () => {
+    process.env.DATABASE_URL = 'postgres://test';
+    delete process.env.EMAIL_FROM_ADDRESS;
+    process.env.RESEND_API_KEY = 'mock-key';
+    vi.resetModules();
+    const { isEmailEnabled } = await import('../lib/config');
+    expect(isEmailEnabled()).toBe(false);
   });
 });
 

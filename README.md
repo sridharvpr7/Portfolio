@@ -236,8 +236,7 @@ In the Render Dashboard → your service → **Environment**, add:
 | `TELEGRAM_CHAT_ID` | Optional | Your numeric Telegram user ID |
 | `TELEGRAM_WEBHOOK_SECRET` | Optional | Must match your `setWebhook` call |
 | `RESEND_API_KEY` | Optional | From resend.com |
-| `EMAIL_FROM_ADDRESS` | Optional | Verified sender address |
-| `APP_BASE_URL` | Optional | Your Render URL — `https://portfolio-xxxx.onrender.com` |
+| `EMAIL_FROM_ADDRESS` | Optional | Verified sender address (e.g. `Sridhar <hello@yourdomain.com>`) |
 
 > **Important**: `VITE_GOOGLE_CLIENT_ID` is embedded into the frontend bundle at build time.
 > Add it to Render's environment variables **before** the build runs.
