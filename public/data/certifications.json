@@ -1,3 +1,76 @@
 {
-  "certifications": []
+  "certificates": [
+    {
+      "id": "html5",
+      "title": "HTML5 - The Language",
+      "issuer": "Infosys Springboard",
+      "date": "2026-05-12",
+      "category": "Web Development",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "css3",
+      "title": "CSS3",
+      "issuer": "Infosys Springboard",
+      "date": "2026-05-15",
+      "category": "Web Development",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript",
+      "issuer": "Infosys Springboard",
+      "date": "2026-06-16",
+      "category": "Web Development",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "digital-electronics",
+      "title": "Digital Electronics",
+      "issuer": "Infosys Springboard",
+      "date": "2026-08-06",
+      "category": "ECE",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "vlsi-verilog",
+      "title": "VLSI Digital Design - Chip Design and Verilog Programming",
+      "issuer": "Infosys Springboard",
+      "date": "2026-08-06",
+      "category": "VLSI & HDL",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "iot",
+      "title": "Internet of Things",
+      "issuer": "Infosys Springboard",
+      "date": "2026-05-10",
+      "category": "ECE & IoT",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "mongodb-basics",
+      "title": "MongoDB Basics for Students",
+      "issuer": "MongoDB",
+      "date": "2026-07-20",
+      "category": "Database",
+      "image": "",
+      "credentialUrl": ""
+    },
+    {
+      "id": "github-copilot",
+      "title": "GitHub Copilot - The Complete Guide - 2026",
+      "issuer": "Udemy",
+      "date": "2026-08-10",
+      "category": "Developer Tools",
+      "image": "",
+      "credentialUrl": ""
+    }
+  ]
 }
