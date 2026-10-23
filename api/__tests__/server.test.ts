@@ -14,7 +14,7 @@
  *  30. Method enforcement — wrong HTTP method returns 405
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Socket } from 'node:net';
 import {

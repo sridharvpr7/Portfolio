@@ -17,6 +17,10 @@
   margin: 0 auto;
 }
 
+.vs-single {
+  padding-bottom: 1.25rem;
+}
+
 .vs-eyebrow {
   display: flex;
   align-items: center;
@@ -59,8 +63,19 @@
   margin-bottom: 1rem;
 }
 
+/* Single stat variant — centered, compact */
+.vs-grid-single {
+  grid-template-columns: 1fr;
+  max-width: 220px;
+}
+
 .vs-grid > * + * {
   border-left: 1px solid var(--border-subtle);
+}
+
+.vs-grid-single > * + * {
+  border-left: none;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .vs-item {
@@ -134,11 +149,17 @@
   .vs-grid > *:nth-child(4) {
     border-top: 1px solid var(--border-subtle);
   }
+  .vs-grid-single {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 380px) {
   .vs-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .vs-grid-single {
+    grid-template-columns: 1fr;
   }
 }
 

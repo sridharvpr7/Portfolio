@@ -14,7 +14,7 @@
  */
 
 import { createServer } from 'node:http';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -61,6 +61,13 @@ function getMime(filePath) {
 // ── Static file helper ────────────────────────────────────────────────────────
 function serveFile(res, filePath, cacheHeader) {
   if (!existsSync(filePath)) return false;
+  // Ensure it's a file, not a directory
+  try {
+    const st = statSync(filePath);
+    if (!st.isFile()) return false;
+  } catch {
+    return false;
+  }
   const content = readFileSync(filePath);
   res.writeHead(200, {
     'Content-Type':   getMime(filePath),
@@ -121,23 +128,18 @@ async function router(req, res, handlers) {
     return;
   }
 
-  // ── Static assets with cache headers ─────────────────────────────────────
+  // ── Static assets with immutable cache headers ────────────────────────────
   if (!isSpaRoute(path)) {
-    // /assets/* or /data/*
+    // /assets/* (Vite-hashed bundles) or /data/* (JSON content files)
     const filePath = join(DIST_DIR, path);
     if (serveFile(res, filePath, getCacheHeader(path))) return;
     res.writeHead(404); res.end(); return;
   }
 
-  // Exact static file match (favicon.svg, robots.txt, PDFs, etc.)
+  // ── Exact static file match (favicon.svg, robots.txt, PDFs, etc.) ────────
   if (path !== '/') {
     const candidate = join(DIST_DIR, path);
-    if (existsSync(candidate)) {
-      const stat = (await import('node:fs/promises')).stat(candidate).then(s => s.isFile()).catch(() => false);
-      if (await stat) {
-        if (serveFile(res, candidate, getCacheHeader(path))) return;
-      }
-    }
+    if (serveFile(res, candidate, getCacheHeader(path))) return;
   }
 
   // ── SPA fallback — all remaining GET requests → index.html ───────────────
@@ -180,6 +182,7 @@ async function main() {
 
   server.listen(PORT, HOST, () => {
     console.log(`[server] Listening on http://${HOST}:${PORT}`);
+    console.log(`[server] Health-check:  http://${HOST}:${PORT}/api/health`);
   });
 
   // Graceful shutdown on Render SIGTERM

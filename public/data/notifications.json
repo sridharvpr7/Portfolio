@@ -1,12 +1,12 @@
 {
-  "enabled": true,
-  "_comment": "Set enabled=true only after configuring all required environment variables (DATABASE_URL, TELEGRAM_BOT_TOKEN, etc.). Missing/invalid config fails closed — nothing breaks.",
+  "enabled": false,
+  "_comment": "Set enabled=true only after configuring all required environment variables in Render Dashboard (DATABASE_URL, SESSION_SECRET, etc.). Missing/invalid config fails closed — nothing breaks when disabled.",
   "visitorAnalytics": {
     "enabled": true,
-    "liveCounterEnabled": true,
+    "liveCounterEnabled": false,
     "totalVisitsEnabled": true,
-    "uniqueVisitorsEnabled": true,
-    "todayVisitsEnabled": true,
+    "uniqueVisitorsEnabled": false,
+    "todayVisitsEnabled": false,
     "activeTimeoutSeconds": 120,
     "heartbeatIntervalSeconds": 30,
     "pollIntervalMs": 30000,
@@ -20,11 +20,11 @@
   "telegram": {
     "enabled": true,
     "anonymousNotificationsEnabled": true,
-    "repeatVisitNotificationsEnabled": true,
+    "repeatVisitNotificationsEnabled": false,
     "deduplicationWindowSeconds": 3600
   },
   "emailGreeting": {
-    "enabled": true,
+    "enabled": false,
     "requiresExplicitConsent": true,
     "sendOnlyOnce": true,
     "subject": "Welcome to my portfolio!"

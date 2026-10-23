@@ -13,23 +13,6 @@ function formatNumber(n: number): string {
   return n.toLocaleString('en-IN');
 }
 
-interface StatItemProps {
-  label: string;
-  value: string;
-  accent?: boolean;
-  live?: boolean;
-}
-
-const StatItem: React.FC<StatItemProps> = ({ label, value, accent, live }) => (
-  <div className={`vs-item${accent ? ' vs-item--accent' : ''}`}>
-    <div className="vs-value" aria-live={live ? 'polite' : undefined}>
-      {live && value !== '—' && <span className="vs-live-dot" aria-hidden="true" />}
-      {value}
-    </div>
-    <div className="vs-label">{label}</div>
-  </div>
-);
-
 export const VisitorStats: React.FC<VisitorStatsProps> = ({ stats, ready, configEnabled }) => {
   // If analytics is not configured, render nothing
   if (!configEnabled) return null;
@@ -37,45 +20,23 @@ export const VisitorStats: React.FC<VisitorStatsProps> = ({ stats, ready, config
   const showSkeleton = !ready;
 
   return (
-    <section className="visitor-stats" aria-label="Visitor statistics">
+    <section className="visitor-stats" aria-label="Portfolio views">
       <div className="vs-rule" aria-hidden="true" />
-      <div className="vs-inner">
+      <div className="vs-inner vs-single">
         <p className="vs-eyebrow" aria-hidden="true">
           <span className="vs-eyebrow-dot" />
           Portfolio Activity
         </p>
-        <div className="vs-grid" role="list">
+        <div className="vs-grid vs-grid-single" role="list">
           <div role="listitem">
-            <StatItem
-              label="Live Now"
-              value={showSkeleton ? '…' : formatNumber(stats.liveVisitors)}
-              accent
-              live
-            />
-          </div>
-          <div role="listitem">
-            <StatItem
-              label="Total Visits"
-              value={showSkeleton ? '…' : formatNumber(stats.totalVisits)}
-            />
-          </div>
-          <div role="listitem">
-            <StatItem
-              label="Unique Visitors"
-              value={showSkeleton ? '…' : formatNumber(stats.uniqueVisitors)}
-            />
-          </div>
-          <div role="listitem">
-            <StatItem
-              label="Today"
-              value={showSkeleton ? '…' : formatNumber(stats.todayVisits)}
-            />
+            <div className="vs-item vs-item--accent">
+              <div className="vs-value">
+                {showSkeleton ? '…' : formatNumber(stats.totalVisits)}
+              </div>
+              <div className="vs-label">Total Views</div>
+            </div>
           </div>
         </div>
-        <p className="vs-disclaimer">
-          "Live Now" counts active sessions within the last 2 minutes and is not an exact headcount.
-          Anonymous sessions are included in total and today counts.
-        </p>
       </div>
     </section>
   );

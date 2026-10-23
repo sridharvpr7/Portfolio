@@ -103,6 +103,13 @@ export async function dispatchApi(
 
   res.setHeader('Cache-Control', 'no-store');
 
+  // Health-check endpoint — always available, no DB required
+  if (path === '/api/health') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ok: true, ts: new Date().toISOString() }));
+    return;
+  }
+
   if (path === '/api/track')            { await handlers.track(req, res); return; }
   if (path === '/api/heartbeat')        { await handlers.heartbeat(req, res); return; }
   if (path === '/api/stats')            { await handlers.stats(req, res); return; }

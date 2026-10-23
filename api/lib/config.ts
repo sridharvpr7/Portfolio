@@ -77,7 +77,7 @@ export function getConfig(): NotificationsConfig {
   if (_config) return _config;
 
   try {
-    // In Vercel serverless functions, process.cwd() points to /var/task (project root)
+    // Works on both Vercel (/var/task) and Render (project root via process.cwd())
     const filePath = join(process.cwd(), 'public', 'data', 'notifications.json');
     const raw = readFileSync(filePath, 'utf-8');
     const parsed = JSON.parse(raw) as NotificationsConfig;
@@ -110,12 +110,22 @@ export function isTelegramEnabled(): boolean {
   );
 }
 
+/**
+ * Email greetings via the server-side /api/email/consent endpoint.
+ * Note: The portfolio contact form uses EmailJS (browser-side) — that is
+ * entirely independent of this flag and does NOT require server-side config.
+ * This flag only controls the server-sent welcome email for signed-in visitors.
+ *
+ * Server-side email is currently disabled because Resend has been removed.
+ * To re-enable, add a transactional email integration and update api/lib/email.ts.
+ */
 export function isEmailEnabled(): boolean {
   const cfg = getConfig();
+  // Server-side email greeting is disabled until a provider is configured.
+  // EmailJS contact form (frontend-only) does not depend on this flag.
   return (
     cfg.enabled &&
     cfg.emailGreeting.enabled &&
-    Boolean(process.env.RESEND_API_KEY) &&
-    Boolean(process.env.EMAIL_FROM_ADDRESS)
+    false // disabled: no server-side email provider configured
   );
 }

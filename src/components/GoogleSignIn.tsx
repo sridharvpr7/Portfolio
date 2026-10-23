@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { LogOut, User, Mail, Trash2 } from 'lucide-react';
 import { authenticateGoogle, logout, submitEmailConsent, deleteAccount } from '../services/analyticsService';
 import './GoogleSignIn.css';
@@ -27,11 +27,29 @@ declare global {
         id: {
           initialize: (config: Record<string, unknown>) => void;
           renderButton: (parent: HTMLElement, config: Record<string, unknown>) => void;
-          prompt: () => void;
+          prompt: (notification?: (n: { isNotDisplayed: () => boolean; isSkippedMoment: () => boolean; isDismissedMoment: () => boolean; getMomentType: () => string }) => void) => void;
+          cancel: () => void;
         };
       };
     };
   }
+}
+
+// One Tap cooldown: don't show again within the same session after dismiss
+const ONE_TAP_DISMISSED_KEY = 'pf_onetap_dismissed';
+
+function wasOneTapDismissed(): boolean {
+  try {
+    return Boolean(sessionStorage.getItem(ONE_TAP_DISMISSED_KEY));
+  } catch {
+    return false;
+  }
+}
+
+function markOneTapDismissed(): void {
+  try {
+    sessionStorage.setItem(ONE_TAP_DISMISSED_KEY, '1');
+  } catch {}
 }
 
 export const GoogleSignIn: React.FC<GoogleSignInProps> = ({ enabled, emailEnabled }) => {
@@ -40,6 +58,7 @@ export const GoogleSignIn: React.FC<GoogleSignInProps> = ({ enabled, emailEnable
   const [gsiLoaded, setGsiLoaded] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleteNotice, setDeleteNotice] = useState<string | null>(null);
+  const oneTapAttempted = useRef(false);
 
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined;
 
@@ -70,22 +89,35 @@ export const GoogleSignIn: React.FC<GoogleSignInProps> = ({ enabled, emailEnable
     script.src = 'https://accounts.google.com/gsi/client';
     script.async = true;
     script.defer = true;
+    script.onerror = () => {
+      // GSI failed to load (offline, blocked, unsupported) — degrade silently
+      console.warn('[gsi] Google Identity Services failed to load');
+    };
     script.onload = () => {
-      window.google?.accounts.id.initialize({
+      if (!window.google) return;
+      window.google.accounts.id.initialize({
         client_id: clientId,
         callback: handleCredentialResponse,
+        // auto_select: true enables One Tap automatic sign-in if only one matching account
         auto_select: false,
         cancel_on_tap_outside: true,
+        // itp_support for Safari ITP
+        itp_support: true,
       });
       setGsiLoaded(true);
     };
     document.head.appendChild(script);
 
     return () => {
-      document.head.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+      // Cancel One Tap on unmount to prevent zombie prompts
+      try { window.google?.accounts.id.cancel(); } catch {}
     };
   }, [enabled, clientId, handleCredentialResponse]);
 
+  // Render the fallback button once GSI loads
   useEffect(() => {
     if (!gsiLoaded || auth.status !== 'idle') return;
     const btn = document.getElementById('gsi-button-container');
@@ -101,11 +133,32 @@ export const GoogleSignIn: React.FC<GoogleSignInProps> = ({ enabled, emailEnable
     }
   }, [gsiLoaded, auth.status]);
 
+  // Show One Tap prompt automatically once — if not dismissed this session
+  useEffect(() => {
+    if (!gsiLoaded || auth.status !== 'idle' || oneTapAttempted.current) return;
+    if (wasOneTapDismissed()) return;
+    if (!window.google) return;
+
+    oneTapAttempted.current = true;
+
+    window.google.accounts.id.prompt((notification) => {
+      if (
+        notification.isNotDisplayed() ||
+        notification.isSkippedMoment() ||
+        notification.isDismissedMoment()
+      ) {
+        // Prompt was not shown or was dismissed — remember for this session
+        markOneTapDismissed();
+      }
+    });
+  }, [gsiLoaded, auth.status]);
+
   const handleLogout = async () => {
     await logout();
     setAuth({ status: 'idle' });
     setEmail({ status: 'idle' });
     setConfirmDelete(false);
+    oneTapAttempted.current = false; // allow prompt to show again after explicit logout
   };
 
   const handleDeleteData = async () => {

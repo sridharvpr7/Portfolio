@@ -5,7 +5,10 @@ import { isTelegramEnabled, getConfig } from '../lib/config';
 import { rateLimit } from '../lib/ratelimit';
 import type { VisitorStats } from '../lib/telegram';
 
+// All commands the bot understands.
+// "views" is an alias that returns the full expanded report (total, today, unique, top pages).
 const ALLOWED_COMMANDS = [
+  'views',
   'unique visitor',
   'live visitors',
   'total visits',
@@ -54,7 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(429).end();
   }
 
-  // Normalize command: handles case-insensitivity, leading slashes (/help, /live_visitors)
+  // Normalize command: handles case-insensitivity, leading slashes (/help, /live_visitors, /views)
   let cmd = text.toLowerCase().replace(/^\//, '').replace(/_/g, ' ').trim();
   if (cmd === 'start') {
     cmd = 'help';

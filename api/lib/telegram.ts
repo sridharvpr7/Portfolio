@@ -127,6 +127,25 @@ export interface VisitorStats {
 export function buildStatsReply(cmd: string, stats: VisitorStats): string {
   const now = esc(istNow());
   switch (cmd) {
+    // "views" — compact combined report for the owner
+    case 'views': {
+      const topPageLines = stats.topPages
+        .slice(0, 5)
+        .map((p, i) => `  ${esc(String(i + 1))}\\. ${esc(p.path)} — *${esc(String(p.count))}*`);
+      return [
+        `*📊 Portfolio View Report*`,
+        ``,
+        `All\\-time total: *${esc(String(stats.totalVisits))}*`,
+        `Today: *${esc(String(stats.todayVisits))}*`,
+        `Unique sessions: *${esc(String((stats.uniqueAccounts ?? 0) + (stats.uniqueAnonymous ?? 0)))}*`,
+        ``,
+        `*🔝 Top Pages \\(30d\\)*`,
+        ...(topPageLines.length ? topPageLines : ['  _No data yet_']),
+        ``,
+        `_${now}_`,
+      ].join('\n');
+    }
+
     case 'unique visitor':
       return [
         `*📊 Portfolio Visitor Statistics*`,
@@ -172,7 +191,7 @@ export function buildStatsReply(cmd: string, stats: VisitorStats): string {
         `_${now}_`,
       ].join('\n');
 
-    case 'top pages':
+    case 'top pages': {
       const pageLines = stats.topPages
         .slice(0, 10)
         .map((p, i) => `${esc(String(i + 1))}\\.  ${esc(p.path)} — *${esc(String(p.count))}*`);
@@ -183,14 +202,16 @@ export function buildStatsReply(cmd: string, stats: VisitorStats): string {
         ``,
         `_${now}_`,
       ].join('\n');
+    }
 
     case 'help':
       return [
         `*🤖 Portfolio Bot Commands*`,
         ``,
+        `\`Views\` — quick combined view report`,
         `\`Unique Visitor\` — unique visitor stats`,
         `\`Live Visitors\` — current active sessions`,
-        `\`Total Visits\` — all\\-time + today`,
+        `\`Total Visits\` — all\\-time \\+ today`,
         `\`Today\` — today's stats`,
         `\`Top Pages\` — most visited pages`,
         `\`Help\` — show this message`,
