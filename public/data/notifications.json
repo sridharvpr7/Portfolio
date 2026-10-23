@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "_comment": "Set enabled=true only after configuring all required environment variables in Render Dashboard (DATABASE_URL, SESSION_SECRET, etc.). Missing/invalid config fails closed — nothing breaks when disabled.",
   "visitorAnalytics": {
     "enabled": true,
