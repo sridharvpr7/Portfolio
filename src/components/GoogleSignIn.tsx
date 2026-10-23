@@ -99,7 +99,7 @@ export const GoogleSignIn: React.FC<GoogleSignInProps> = ({ enabled, emailEnable
         client_id: clientId,
         callback: handleCredentialResponse,
         // auto_select: true enables One Tap automatic sign-in if only one matching account
-        auto_select: false,
+        auto_select: true,
         cancel_on_tap_outside: true,
         // itp_support for Safari ITP
         itp_support: true,
